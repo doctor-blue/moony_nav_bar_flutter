@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
-import 'dart:async';
-
-import 'package:flutter/services.dart';
 import 'package:moony_nav_bar/moony_nav_bar.dart';
+import 'package:moony_nav_bar_example/screen.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,33 +13,14 @@ class MyApp extends StatefulWidget {
 
 class _MyAppState extends State<MyApp> {
   String _platformVersion = 'Unknown';
+  Widget _screen1 = Screen1();
+  Widget _screen2 = Screen2();
+  Widget _screen3 = Screen3();
+  int selectedIndex = 0;
 
   @override
   void initState() {
     super.initState();
-    initPlatformState();
-  }
-
-  // Platform messages are asynchronous, so we initialize in an async method.
-  Future<void> initPlatformState() async {
-    String platformVersion;
-    // Platform messages may fail, so we use a try/catch PlatformException.
-    // We also handle the message potentially returning null.
-    try {
-      platformVersion =
-          await MoonyNavBar.platformVersion ?? 'Unknown platform version';
-    } on PlatformException {
-      platformVersion = 'Failed to get platform version.';
-    }
-
-    // If the widget was removed from the tree while the asynchronous platform
-    // message was in flight, we want to discard the reply rather than calling
-    // setState to update our non-existent appearance.
-    if (!mounted) return;
-
-    setState(() {
-      _platformVersion = platformVersion;
-    });
   }
 
   @override
@@ -49,12 +28,45 @@ class _MyAppState extends State<MyApp> {
     return MaterialApp(
       home: Scaffold(
         appBar: AppBar(
-          title: const Text('Plugin example app'),
+          title: const Text('Moony navigation bar'),
         ),
-        body: Center(
-          child: Text('Running on: $_platformVersion\n'),
-        ),
+        body: getBody(),
+        bottomNavigationBar:
+            MoonyNavigationBar(// Usar -> "BottomNavigationDotBar"
+                items: <NavigationBarItem>[
+          NavigationBarItem(
+              icon: Icons.home,
+              onTap: () {
+                onTapHandler(0);
+              }),
+          NavigationBarItem(
+              icon: Icons.map,
+              onTap: () {
+                onTapHandler(1);
+              }),
+          NavigationBarItem(
+              icon: Icons.account_box,
+              onTap: () {
+                onTapHandler(2);
+              }),
+        ]),
       ),
     );
+  }
+
+  Widget getBody() {
+    if (this.selectedIndex == 0) {
+      return this._screen1;
+    } else if (this.selectedIndex == 1) {
+      return this._screen2;
+    } else {
+      return this._screen3;
+    }
+  }
+
+  void onTapHandler(int index) {
+    this.setState(() {
+      this.selectedIndex = index;
+    });
   }
 }
