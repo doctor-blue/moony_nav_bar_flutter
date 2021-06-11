@@ -25,16 +25,21 @@ class MoonyNavigationBar extends StatefulWidget {
 
 class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
   GlobalKey _keyNavigationBar = GlobalKey();
+
   double _numPositionBase = 0,
       _numDifferenceBase = 0,
-      _positionLeftIndicatorDot = 0,
-      _positionBottomIndicatorDot = 0;
+      _positionLeftIndicator = 0,
+      _positionBottomIndicator = 0;
+
   int _indexPageSelected = 0;
 
   Color _color = Colors.black45, _activeColor = Colors.black;
 
   IndicatorPosition _indicatorPosition = IndicatorPosition.BOTTOM;
   IndicatorType _indicatorType = IndicatorType.POINT;
+  
+  late Widget _indicatorWidget =
+      CircleAvatar(radius: 2.5, backgroundColor: _activeColor);
 
   @override
   void initState() {
@@ -43,29 +48,50 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
   }
 
   _afterLayout(_) {
+    _setStyle();
+
+    _sizeCaculation();
+
+    setState(() {
+      _positionLeftIndicator = _numPositionBase - _numDifferenceBase;
+    });
+  }
+
+  _setStyle() {
     //get Color
     _color = widget.color ?? Colors.black45;
     _activeColor = widget.activeColor ?? Theme.of(context).primaryColor;
+
     //get type
     _indicatorPosition = widget.indicatorPosition ?? _indicatorPosition;
     _indicatorType = widget.indicatorType ?? _indicatorType;
 
+    // indicator type
+    _indicatorWidget = _indicatorType == IndicatorType.POINT
+        ? CircleAvatar(radius: 2.5, backgroundColor: _activeColor)
+        : Container(
+            width: 12,
+            height: 2.5,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(2), color: _activeColor),
+          );
+  }
+
+  _sizeCaculation() {
     //size calculation
     final sizeNavigationBar =
         (_keyNavigationBar.currentContext!.findRenderObject() as RenderBox)
             .size;
 
     _numPositionBase = ((sizeNavigationBar.width / widget.items.length));
-    _numDifferenceBase = (_numPositionBase - (_numPositionBase / 2) + 2);
+    _numDifferenceBase = (_numPositionBase -
+        (_numPositionBase / 2) +
+        (_indicatorType == IndicatorType.LINE ? 6 : 2));
 
     // indicator position
-    _positionBottomIndicatorDot = _indicatorPosition == IndicatorPosition.BOTTOM
+    _positionBottomIndicator = _indicatorPosition == IndicatorPosition.BOTTOM
         ? 0
         : sizeNavigationBar.height - 6;
-
-    setState(() {
-      _positionLeftIndicatorDot = _numPositionBase - _numDifferenceBase;
-    });
   }
 
   @override
@@ -84,12 +110,11 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
                             widget.items.asMap())),
                   ),
                   AnimatedPositioned(
-                      child: CircleAvatar(
-                          radius: 2.5, backgroundColor: _activeColor),
+                      child: _indicatorWidget,
                       duration: Duration(milliseconds: 400),
                       curve: Curves.fastOutSlowIn,
-                      left: _positionLeftIndicatorDot,
-                      bottom: _positionBottomIndicatorDot),
+                      left: _positionLeftIndicator,
+                      bottom: _positionBottomIndicator),
                 ],
               ),
             )),
@@ -114,7 +139,7 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
   void _changeOptionBottomBar(int indexPageSelected) {
     if (indexPageSelected != _indexPageSelected) {
       setState(() {
-        _positionLeftIndicatorDot =
+        _positionLeftIndicator =
             (_numPositionBase * (indexPageSelected + 1)) - _numDifferenceBase;
       });
       _indexPageSelected = indexPageSelected;

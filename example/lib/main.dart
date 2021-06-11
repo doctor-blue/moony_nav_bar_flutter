@@ -12,7 +12,6 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  String _platformVersion = 'Unknown';
   Widget _screen1 = Screen1();
   Widget _screen2 = Screen2();
   Widget _screen3 = Screen3();
@@ -31,25 +30,33 @@ class _MyAppState extends State<MyApp> {
           title: const Text('Moony navigation bar'),
         ),
         body: getBody(),
-        bottomNavigationBar:
-            MoonyNavigationBar(// Usar -> "BottomNavigationDotBar"
-                items: <NavigationBarItem>[
-          NavigationBarItem(
-              icon: Icons.home,
-              onTap: () {
-                onTapHandler(0);
-              }),
-          NavigationBarItem(
-              icon: Icons.map,
-              onTap: () {
-                onTapHandler(1);
-              }),
-          NavigationBarItem(
-              icon: Icons.account_box,
-              onTap: () {
-                onTapHandler(2);
-              }),
-        ]),
+        bottomNavigationBar: MoonyNavigationBar(
+          // Usar -> "BottomNavigationDotBar"
+          items: <NavigationBarItem>[
+            NavigationBarItem(
+                icon: Icons.home,
+                onTap: () {
+                  onTapHandler(0);
+                }),
+            NavigationBarItem(
+                icon: Icons.map,
+                onTap: () {
+                  onTapHandler(1);
+                }),
+            NavigationBarItem(
+                icon: Icons.account_box,
+                onTap: () {
+                  onTapHandler(2);
+                }),
+            NavigationBarItem(
+                icon: Icons.account_box,
+                onTap: () {
+                  onTapHandler(2);
+                })
+          ],
+          indicatorPosition: IndicatorPosition.TOP,
+          indicatorType: IndicatorType.LINE,
+        ),
       ),
     );
   }
