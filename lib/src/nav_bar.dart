@@ -37,7 +37,7 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
 
   IndicatorPosition _indicatorPosition = IndicatorPosition.BOTTOM;
   IndicatorType _indicatorType = IndicatorType.POINT;
-  
+
   late Widget _indicatorWidget =
       CircleAvatar(radius: 2.5, backgroundColor: _activeColor);
 
@@ -87,10 +87,11 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
     _numDifferenceBase = (_numPositionBase -
         (_numPositionBase / 2) +
         (_indicatorType == IndicatorType.LINE ? 6 : 2));
+        
 
     // indicator position
     _positionBottomIndicator = _indicatorPosition == IndicatorPosition.BOTTOM
-        ? 0
+        ? 2
         : sizeNavigationBar.height - 6;
   }
 
@@ -124,7 +125,8 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
       Map<int, NavigationBarItem> mapItem) {
     List<NavigationButton> children = [];
 
-    mapItem.forEach((index, item) => children.add(NavigationButton(
+    mapItem.forEach((index, item) => children.add(
+         NavigationButton(
           item.icon,
           (index == _indexPageSelected) ? _activeColor : _color,
           item.onTap,

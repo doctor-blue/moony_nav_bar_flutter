@@ -1,0 +1,22 @@
+PODS:
+  - Flutter (1.0.0)
+  - moony_nav_bar (0.0.1):
+    - Flutter
+
+DEPENDENCIES:
+  - Flutter (from `Flutter`)
+  - moony_nav_bar (from `.symlinks/plugins/moony_nav_bar/ios`)
+
+EXTERNAL SOURCES:
+  Flutter:
+    :path: Flutter
+  moony_nav_bar:
+    :path: ".symlinks/plugins/moony_nav_bar/ios"
+
+SPEC CHECKSUMS:
+  Flutter: 434fef37c0980e73bb6479ef766c45957d4b510c
+  moony_nav_bar: 34743a1a11c8b49fa552b7309d057457b1d08c7a
+
+PODFILE CHECKSUM: aafe91acc616949ddb318b77800a7f51bffa2a4c
+
+COCOAPODS: 1.10.1
