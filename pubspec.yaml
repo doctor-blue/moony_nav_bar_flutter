@@ -1,6 +1,8 @@
 name: moony_nav_bar
-description: A new flutter plugin project.
-version: 0.0.1
+description: Moony navigation bar.
+home: https://github.com/doctor-blue/moony_nav_bar_flutter
+repository: https://github.com/doctor-blue/moony_nav_bar_flutter
+version: 1.0.1
 homepage:
 
 environment:
