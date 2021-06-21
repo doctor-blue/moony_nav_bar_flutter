@@ -25,13 +25,10 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
 
   int _indexPageSelected = 0;
 
-  Color _color = Colors.black45, _activeColor = Colors.black;
-
-  IndicatorPosition _indicatorPosition = IndicatorPosition.TOP;
-  IndicatorType _indicatorType = IndicatorType.POINT;
+  MoonyNavStyle _style = MoonyNavStyle();
 
   late Widget _indicatorWidget =
-      CircleAvatar(radius: 2.5, backgroundColor: _activeColor);
+      CircleAvatar(radius: 2.5, backgroundColor: _style.activeColor);
 
   @override
   void initState() {
@@ -50,22 +47,17 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
   }
 
   _setStyle() {
-    //get Color
-    _color = widget.style.color;
-    _activeColor = widget.style.activeColor;
-
-    //get type
-    _indicatorPosition = widget.style.indicatorPosition;
-    _indicatorType = widget.style.indicatorType;
-
+    _style = widget.style;
+    
     // indicator type
-    _indicatorWidget = _indicatorType == IndicatorType.POINT
-        ? CircleAvatar(radius: 2.5, backgroundColor: _activeColor)
+    _indicatorWidget = _style.indicatorType == IndicatorType.POINT
+        ? CircleAvatar(radius: 2.5, backgroundColor: _style.activeColor)
         : Container(
             width: 12,
             height: 2.5,
             decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2), color: _activeColor),
+                borderRadius: BorderRadius.circular(2),
+                color: _style.activeColor),
           );
   }
 
@@ -78,12 +70,13 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
     _numPositionBase = ((sizeNavigationBar.width / widget.items.length));
     _numDifferenceBase = (_numPositionBase -
         (_numPositionBase / 2) +
-        (_indicatorType == IndicatorType.LINE ? 6 : 2));
+        (_style.indicatorType == IndicatorType.LINE ? 6 : 2));
 
     // indicator position
-    _positionBottomIndicator = _indicatorPosition == IndicatorPosition.BOTTOM
-        ? 2
-        : sizeNavigationBar.height - 6;
+    _positionBottomIndicator =
+        _style.indicatorPosition == IndicatorPosition.BOTTOM
+            ? 2
+            : sizeNavigationBar.height - 6;
   }
 
   @override
@@ -121,7 +114,7 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
 
     mapItem.forEach((index, item) => children.add(NavigationButton(
           item.icon,
-          (index == _indexPageSelected) ? _activeColor : _color,
+          (index == _indexPageSelected) ? _style.activeColor : _style.color,
           item.onTap,
           () {
             _changeOptionBottomBar(index);
