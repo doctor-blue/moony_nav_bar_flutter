@@ -18,6 +18,5 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
-    expect(await MoonyNavBar.platformVersion, '42');
   });
 }
