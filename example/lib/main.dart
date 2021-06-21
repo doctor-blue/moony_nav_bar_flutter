@@ -55,8 +55,9 @@ class _MyAppState extends State<MyApp> {
                   onTapHandler(3);
                 })
           ],
-          indicatorPosition: IndicatorPosition.TOP,
-          indicatorType: IndicatorType.POINT,
+          style: MoonyNavStyle(
+            activeColor: Theme.of(context).primaryColor
+          ),
         ),
       ),
     );

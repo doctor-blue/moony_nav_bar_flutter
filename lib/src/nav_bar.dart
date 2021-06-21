@@ -1,22 +1,14 @@
 import 'package:flutter/material.dart';
 import 'package:moony_nav_bar/moony_nav_bar.dart';
+import 'package:moony_nav_bar/src/moony_nav_style.dart';
 import 'package:moony_nav_bar/src/nav_bar_item.dart';
 import 'package:moony_nav_bar/src/nav_button.dart';
 
 class MoonyNavigationBar extends StatefulWidget {
   final List<NavigationBarItem> items;
-  final Color? activeColor;
-  final Color? color;
-  final IndicatorPosition? indicatorPosition;
-  final IndicatorType? indicatorType;
+  final MoonyNavStyle style;
 
-  MoonyNavigationBar(
-      {required this.items,
-      this.activeColor,
-      this.color,
-      this.indicatorPosition,
-      this.indicatorType,
-      Key? key})
+  MoonyNavigationBar({required this.items, required this.style, Key? key})
       : super(key: key);
 
   @override
@@ -35,7 +27,7 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
 
   Color _color = Colors.black45, _activeColor = Colors.black;
 
-  IndicatorPosition _indicatorPosition = IndicatorPosition.BOTTOM;
+  IndicatorPosition _indicatorPosition = IndicatorPosition.TOP;
   IndicatorType _indicatorType = IndicatorType.POINT;
 
   late Widget _indicatorWidget =
@@ -59,12 +51,12 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
 
   _setStyle() {
     //get Color
-    _color = widget.color ?? Colors.black45;
-    _activeColor = widget.activeColor ?? Theme.of(context).primaryColor;
+    _color = widget.style.color;
+    _activeColor = widget.style.activeColor;
 
     //get type
-    _indicatorPosition = widget.indicatorPosition ?? _indicatorPosition;
-    _indicatorType = widget.indicatorType ?? _indicatorType;
+    _indicatorPosition = widget.style.indicatorPosition;
+    _indicatorType = widget.style.indicatorType;
 
     // indicator type
     _indicatorWidget = _indicatorType == IndicatorType.POINT
@@ -87,7 +79,6 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
     _numDifferenceBase = (_numPositionBase -
         (_numPositionBase / 2) +
         (_indicatorType == IndicatorType.LINE ? 6 : 2));
-        
 
     // indicator position
     _positionBottomIndicator = _indicatorPosition == IndicatorPosition.BOTTOM
@@ -97,8 +88,11 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
 
   @override
   Widget build(BuildContext context) => Container(
+        padding: EdgeInsets.fromLTRB(widget.style.marginLeft, 0,
+            widget.style.marginRight, widget.style.marginBottom),
         child: Material(
-            elevation: 5,
+            elevation: widget.style.elevation,
+            borderRadius: BorderRadius.circular(widget.style.borderRadius),
             child: Container(
               child: Stack(
                 key: _keyNavigationBar,
@@ -125,8 +119,7 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
       Map<int, NavigationBarItem> mapItem) {
     List<NavigationButton> children = [];
 
-    mapItem.forEach((index, item) => children.add(
-         NavigationButton(
+    mapItem.forEach((index, item) => children.add(NavigationButton(
           item.icon,
           (index == _indexPageSelected) ? _activeColor : _color,
           item.onTap,
