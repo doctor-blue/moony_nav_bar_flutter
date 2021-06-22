@@ -1,8 +1,8 @@
 name: moony_nav_bar
-description: Moony navigation bar.
+description: Moony navigation bar. Simple and easy to use
 home: https://github.com/doctor-blue/moony_nav_bar_flutter
 repository: https://github.com/doctor-blue/moony_nav_bar_flutter
-version: 1.0.1
+version: 1.0.2
 homepage:
 
 environment:

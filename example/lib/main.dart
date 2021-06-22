@@ -32,8 +32,8 @@ class _MyAppState extends State<MyApp> {
         ),
         body: getBody(),
         bottomNavigationBar: MoonyNavigationBar(
-          // Usar -> "BottomNavigationDotBar"
           items: <NavigationBarItem>[
+            
             NavigationBarItem(
                 icon: Icons.home,
                 onTap: () {

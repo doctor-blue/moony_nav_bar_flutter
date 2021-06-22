@@ -22,7 +22,7 @@ This will add a line like this to your package's pubspec.yaml (and run an implic
 
 ```yaml
 dependencies:
-  moony_nav_bar: ^1.0.1
+  moony_nav_bar: ^1.0.2
 ```
 
 ### Import it
