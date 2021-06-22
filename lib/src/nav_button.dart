@@ -36,7 +36,7 @@ class _NavigationButtonState extends State<NavigationButton>
       onTapDown: (_) {
         _controller.forward();
         setState(() {
-          _opacityIcon = 0.7;
+          _opacityIcon = 0.5;
         });
       },
       onTapUp: (_) {
@@ -59,6 +59,6 @@ class _NavigationButtonState extends State<NavigationButton>
           scale: _scaleAnimation,
           child: AnimatedOpacity(
               opacity: _opacityIcon,
-              duration: Duration(milliseconds: 200),
+              duration: Duration(milliseconds: 400),
               child: Icon(widget._icon, color: widget._colorIcon))));
 }
