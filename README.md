@@ -22,7 +22,7 @@ This will add a line like this to your package's pubspec.yaml (and run an implic
 
 ```yaml
 dependencies:
-  moony_nav_bar: ^1.0.2
+  moony_nav_bar: ^1.1.0
 ```
 
 ### Import it
@@ -36,14 +36,16 @@ All navigation bar style contained inside the MoonyNavStyle class
 | Attributes | Type | Default | Description |
 |----------- | ---------- |-----------| ----------- |
 | activeColor | Color | Color.black | Active Color|
-| color | Color | Color.black45 | Default |
+| color | Color | Color.black45 | Inactive navigation item color |
+| indicatorColor | Color | activeColor | Indicator color |
+| backgroundColor | Color | Colors.white | Background color |
 | indicatorPosition | IndicatorPosition | IndicatorPosition.TOP | Indicator position |
 | indicatorType | IndicatorType | IndicatorType.POINT | Indicator type |
 | marginLeft | double | 0 | Margin left |
 | marginRight | double | 0 | Margin right |
 | marginBottom | double | 0 | Margin bottom |
 | elevation | double | 5 | Navigation elevation |
-| borderRadius | double | 0 | Navigation border radius |
+| borderRadius | BorderRadius? | null | Navigation border radius. example : `BorderRadius.circular(10)`  |
 
 
 ## Example
@@ -86,7 +88,7 @@ class _MyAppState extends State<MyApp> {
         ),
         body: getBody(),
         bottomNavigationBar: MoonyNavigationBar(
-          // Usar -> "BottomNavigationDotBar"
+
           items: <NavigationBarItem>[
             NavigationBarItem(
                 icon: Icons.home,
@@ -109,6 +111,7 @@ class _MyAppState extends State<MyApp> {
                   onTapHandler(3);
                 })
           ],
+
           style: MoonyNavStyle(
             activeColor: Theme.of(context).primaryColor
           ),
