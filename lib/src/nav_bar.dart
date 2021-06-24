@@ -48,16 +48,20 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
 
   _setStyle() {
     _style = widget.style;
-    
+
+    if (_style.indicatorColor == Colors.black) {
+      _style.indicatorColor = _style.activeColor;
+    }
+
     // indicator type
     _indicatorWidget = _style.indicatorType == IndicatorType.POINT
-        ? CircleAvatar(radius: 2.5, backgroundColor: _style.activeColor)
+        ? CircleAvatar(radius: 2.5, backgroundColor: _style.indicatorColor)
         : Container(
             width: 12,
             height: 2.5,
             decoration: BoxDecoration(
                 borderRadius: BorderRadius.circular(2),
-                color: _style.activeColor),
+                color: _style.indicatorColor),
           );
   }
 
@@ -85,7 +89,8 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
             widget.style.marginRight, widget.style.marginBottom),
         child: Material(
             elevation: widget.style.elevation,
-            borderRadius: BorderRadius.circular(widget.style.borderRadius),
+            borderRadius: _style.borderRadius,
+            color: _style.backgroundColor,
             child: Container(
               child: Stack(
                 key: _keyNavigationBar,

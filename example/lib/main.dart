@@ -32,7 +32,6 @@ class _MyAppState extends State<MyApp> {
         ),
         body: getBody(),
         bottomNavigationBar: MoonyNavigationBar(
-          // Usar -> "BottomNavigationDotBar"
           items: <NavigationBarItem>[
             NavigationBarItem(
                 icon: Icons.home,
@@ -56,7 +55,13 @@ class _MyAppState extends State<MyApp> {
                 })
           ],
           style: MoonyNavStyle(
-            activeColor: Theme.of(context).primaryColor
+            activeColor: Theme.of(context).primaryColor,
+            indicatorPosition: IndicatorPosition.TOP,
+            indicatorType: IndicatorType.POINT,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
           ),
         ),
       ),

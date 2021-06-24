@@ -1,6 +1,5 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
-import 'package:moony_nav_bar/moony_nav_bar.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('moony_nav_bar');
