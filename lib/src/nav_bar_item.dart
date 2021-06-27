@@ -5,5 +5,14 @@ import 'utils.dart';
 class NavigationBarItem {
   final IconData icon;
   final NavigationButtonTapCallback onTap;
-  const NavigationBarItem({required this.icon, required this.onTap});
+  final IconData? activeIcon;
+  final Color? color;
+  final Color? indicatorColor;
+  
+  const NavigationBarItem(
+      {required this.icon,
+      required this.onTap,
+      this.activeIcon,
+      this.color,
+      this.indicatorColor});
 }

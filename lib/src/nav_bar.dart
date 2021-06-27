@@ -27,8 +27,7 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
 
   MoonyNavStyle _style = MoonyNavStyle();
 
-  late Widget _indicatorWidget =
-      CircleAvatar(radius: 2.5, backgroundColor: _style.activeColor);
+  late Color _indicatorColor = _style.indicatorColor;
 
   @override
   void initState() {
@@ -53,16 +52,8 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
       _style.indicatorColor = _style.activeColor;
     }
 
-    // indicator type
-    _indicatorWidget = _style.indicatorType == IndicatorType.POINT
-        ? CircleAvatar(radius: 2.5, backgroundColor: _style.indicatorColor)
-        : Container(
-            width: 12,
-            height: 2.5,
-            decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(2),
-                color: _style.indicatorColor),
-          );
+    _indicatorColor = _style.indicatorColor;
+
   }
 
   _sizeCaculation() {
@@ -103,7 +94,7 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
                             widget.items.asMap())),
                   ),
                   AnimatedPositioned(
-                      child: _indicatorWidget,
+                      child: getIndicator(),
                       duration: Duration(milliseconds: 400),
                       curve: Curves.fastOutSlowIn,
                       left: _positionLeftIndicator,
@@ -118,13 +109,19 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
     List<NavigationButton> children = [];
 
     mapItem.forEach((index, item) => children.add(NavigationButton(
-          item.icon,
-          (index == _indexPageSelected) ? _style.activeColor : _style.color,
+          (index == _indexPageSelected)
+              ? item.activeIcon ?? item.icon
+              : item.icon,
+          (index == _indexPageSelected)
+              ? item.color ?? _style.activeColor
+              : _style.color,
           item.onTap,
           () {
             _changeOptionBottomBar(index);
+            setState(() {
+              _indicatorColor = item.indicatorColor ?? _style.indicatorColor;
+            });
           },
-          key: null,
         )));
     return children;
   }
@@ -137,5 +134,16 @@ class _MoonyNavigationBarState extends State<MoonyNavigationBar> {
       });
       _indexPageSelected = indexPageSelected;
     }
+  }
+
+  getIndicator(){
+        return _style.indicatorType == IndicatorType.POINT
+        ? CircleAvatar(radius: 2.5, backgroundColor: _indicatorColor)
+        : Container(
+            width: 12,
+            height: 2.5,
+            decoration: BoxDecoration(
+                borderRadius: BorderRadius.circular(2), color: _indicatorColor),
+          );
   }
 }

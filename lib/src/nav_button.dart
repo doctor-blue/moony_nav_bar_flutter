@@ -7,10 +7,11 @@ class NavigationButton extends StatefulWidget {
   final Color _colorIcon;
   final NavigationButtonTapCallback _onTapInternalButton;
   final NavigationButtonTapCallback _onTapExternalButton;
+  final IconData? activeIcon;
 
   const NavigationButton(this._icon, this._colorIcon, this._onTapInternalButton,
       this._onTapExternalButton,
-      {Key? key})
+      {Key? key, this.activeIcon})
       : super(key: key);
 
   @override

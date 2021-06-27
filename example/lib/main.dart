@@ -33,14 +33,16 @@ class _MyAppState extends State<MyApp> {
         body: getBody(),
         bottomNavigationBar: MoonyNavigationBar(
           items: <NavigationBarItem>[
-            
             NavigationBarItem(
-                icon: Icons.home,
+                icon: Icons.home_rounded,
                 onTap: () {
                   onTapHandler(0);
                 }),
             NavigationBarItem(
                 icon: Icons.favorite_border_outlined,
+                activeIcon: Icons.favorite,
+                color: Colors.pink,
+                indicatorColor: Colors.pink,
                 onTap: () {
                   onTapHandler(1);
                 }),
