@@ -1,3 +1,6 @@
+## [1.2.0] - 2021-06-29
+ * Custom NavigationBarItem available
+
 ## [1.1.0] - 2021-06-24
  * backgroundColor, indicatorColor is now available in MoonyNavStyle.
  * Change the data type of borderRadius from double to BorderRadius?

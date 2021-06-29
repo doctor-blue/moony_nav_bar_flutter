@@ -9,7 +9,45 @@ You can create issues and notify me of errors you see or when you have any quest
 [![paypal](https://www.paypalobjects.com/en_US/i/btn/btn_donateCC_LG.gif)](https://www.paypal.me/doctorblue00)
 
 ## GIF
-<img src="https://raw.githubusercontent.com/doctor-blue/moony_nav_bar_flutter/master/preview/preview_mobile.gif" width="272" height="550"/>
+
+<br>
+- #1 
+<br>
+<br>
+
+<img src="https://raw.githubusercontent.com/doctor-blue/moony_nav_bar_flutter/master/preview/preview1.gif" width="412" height="116"/>
+
+<br>
+<br>
+- #2
+<br>
+<br>
+
+<img src="https://raw.githubusercontent.com/doctor-blue/moony_nav_bar_flutter/master/preview/preview3.gif" width="412" height="116"/>
+
+<br>
+<br>
+- #3
+<br>
+<br>
+
+<img src="https://raw.githubusercontent.com/doctor-blue/moony_nav_bar_flutter/master/preview/preview4.gif" width="412" height="116"/>
+
+<br>
+<br>
+- #4 Custom NavigationBarItem
+<br>
+<br>
+
+<img src="https://raw.githubusercontent.com/doctor-blue/moony_nav_bar_flutter/master/preview/preview2.gif" width="412" height="116"/>
+
+<br>
+<br>
+- #5 with margin and border radius
+<br>
+<br>
+
+<img src="https://raw.githubusercontent.com/doctor-blue/moony_nav_bar_flutter/master/preview/preview5.gif" width="412" height="116"/>
 
 ## Setup
 
@@ -47,6 +85,14 @@ All navigation bar style contained inside the MoonyNavStyle class
 | elevation | double | 5 | Navigation elevation |
 | borderRadius | BorderRadius? | null | Navigation border radius. example : `BorderRadius.circular(10)`  |
 
+### NavigationBarItem attributes
+| Attributes | Type | Default | Description |
+|----------- | ---------- |-----------| ----------- |
+| icon | IconData |  | Default Icon `required`|
+| onTap | NavigationButtonTapCallback | | Tap listener `required` |
+| activeIcon | IconData | null | Active icon `optional`|
+| indicatorColor | Color | style.indicatorColor | Indicator color `optional`|
+| color | Color | style.activeColor | Active icon color `optional` |
 
 ## Example
 
@@ -88,15 +134,17 @@ class _MyAppState extends State<MyApp> {
         ),
         body: getBody(),
         bottomNavigationBar: MoonyNavigationBar(
-
           items: <NavigationBarItem>[
             NavigationBarItem(
-                icon: Icons.home,
+                icon: Icons.home_rounded,
                 onTap: () {
                   onTapHandler(0);
                 }),
             NavigationBarItem(
                 icon: Icons.favorite_border_outlined,
+                activeIcon: Icons.favorite,
+                color: Colors.pink,
+                indicatorColor: Colors.pink,
                 onTap: () {
                   onTapHandler(1);
                 }),
@@ -111,9 +159,14 @@ class _MyAppState extends State<MyApp> {
                   onTapHandler(3);
                 })
           ],
-
           style: MoonyNavStyle(
-            activeColor: Theme.of(context).primaryColor
+            activeColor: Theme.of(context).primaryColor,
+            indicatorPosition: IndicatorPosition.TOP,
+            indicatorType: IndicatorType.POINT,
+            borderRadius: BorderRadius.only(
+              topLeft: Radius.circular(10),
+              topRight: Radius.circular(10),
+            ),
           ),
         ),
       ),
@@ -137,5 +190,6 @@ class _MyAppState extends State<MyApp> {
     });
   }
 }
+
 ```
 
