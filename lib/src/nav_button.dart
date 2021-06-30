@@ -4,7 +4,7 @@ import 'utils.dart';
 
 class NavigationButton extends StatefulWidget {
   final IconData _icon;
-  final Color _colorIcon;
+  final Color? _colorIcon;
   final NavigationButtonTapCallback _onTapInternalButton;
   final NavigationButtonTapCallback _onTapExternalButton;
   final IconData? activeIcon;
