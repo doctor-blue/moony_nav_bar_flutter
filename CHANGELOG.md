@@ -1,4 +1,4 @@
-## [1.3.0] - 2021-06-29
+## [1.3.0] - 2021-06-30
  * Fix activeIcon in NavigationBarItem 
  * Add support for Web platform.
 ## [1.2.0] - 2021-06-29
