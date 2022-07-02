@@ -1,5 +1,6 @@
 import 'package:flutter/services.dart';
 import 'package:flutter_test/flutter_test.dart';
+import 'package:moony_nav_bar/moony_nav_bar_flutter.dart';
 
 void main() {
   const MethodChannel channel = MethodChannel('moony_nav_bar');
@@ -17,5 +18,6 @@ void main() {
   });
 
   test('getPlatformVersion', () async {
+    expect(await MoonyNavBarFlutter.platformVersion, '42');
   });
 }

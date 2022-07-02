@@ -12,10 +12,10 @@ class MyApp extends StatefulWidget {
 }
 
 class _MyAppState extends State<MyApp> {
-  Widget _screen1 = Screen1();
-  Widget _screen2 = Screen2();
-  Widget _screen3 = Screen3();
-  Widget _screen4 = Screen4();
+  final Widget _screen1 = const Screen1();
+  final Widget _screen2 = const Screen2();
+  final Widget _screen3 = const Screen3();
+  final Widget _screen4 = const Screen4();
   int selectedIndex = 0;
 
   @override
@@ -72,19 +72,19 @@ class _MyAppState extends State<MyApp> {
   }
 
   Widget getBody() {
-    if (this.selectedIndex == 0) {
-      return this._screen1;
-    } else if (this.selectedIndex == 1) {
-      return this._screen2;
-    } else if (this.selectedIndex == 2) {
-      return this._screen3;
+    if (selectedIndex == 0) {
+      return _screen1;
+    } else if (selectedIndex == 1) {
+      return _screen2;
+    } else if (selectedIndex == 2) {
+      return _screen3;
     }
-    return this._screen4;
+    return _screen4;
   }
 
   void onTapHandler(int index) {
-    this.setState(() {
-      this.selectedIndex = index;
+    setState(() {
+      selectedIndex = index;
     });
   }
 }

@@ -2,8 +2,9 @@ name: moony_nav_bar
 description: Moony navigation bar. Simple and easy to use. Supports Android, IOS, Web.
 home: https://github.com/doctor-blue/moony_nav_bar_flutter
 repository: https://github.com/doctor-blue/moony_nav_bar_flutter
-version: 1.3.0
+version: 1.3.3
 homepage:
+
 
 environment:
   sdk: ">=2.12.0 <3.0.0"
@@ -12,12 +13,11 @@ environment:
 dependencies:
   flutter:
     sdk: flutter
-  flutter_web_plugins:
-    sdk: flutter
 
 dev_dependencies:
   flutter_test:
     sdk: flutter
+  flutter_lints: ^1.0.0
 
 # For information on the generic Dart part of this file, see the
 # following page: https://dart.dev/tools/pub/pubspec
